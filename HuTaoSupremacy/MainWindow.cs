@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace HuTaoSupremacy
 {
-    public partial class Form1 : Form
-    {
-        public Form1()
+    public partial class MainWindow : Form
+    { 
+        public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonBrowse_Click(object sender, EventArgs e)
         {
-
+            openFileDialog.ShowDialog();
         }
     }
 }

@@ -14,8 +14,12 @@ namespace HuTaoSupremacy
         [STAThread]
         static void Main()
         {
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             //create a form 
-            System.Windows.Forms.Form form = new System.Windows.Forms.Form();
+            System.Windows.Forms.Form form = new MainWindow();
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             //create a graph object 
@@ -31,18 +35,15 @@ namespace HuTaoSupremacy
             c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
             //bind the graph to the viewer 
             viewer.Graph = graph;
+            viewer.Width = 300;
+            viewer.Height = 300;
             //associate the viewer with the form 
             form.SuspendLayout();
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            //viewer.Dock = System.Windows.Forms.DockStyle.Fill;
             form.Controls.Add(viewer);
             form.ResumeLayout();
             //show the form 
             form.ShowDialog();
-
-            //Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
         }
     }
 }
