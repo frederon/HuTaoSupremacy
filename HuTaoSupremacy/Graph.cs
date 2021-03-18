@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HuTaoSupremacy
 {
-    class Graph
+    public class Graph
     {
         private List<Node> nodes;
         public Graph()
@@ -58,7 +58,7 @@ namespace HuTaoSupremacy
             }
         }
     }
-    class Node
+    public class Node
     {
         private string name;
         private List<string> neighbor;
