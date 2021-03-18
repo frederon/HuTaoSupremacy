@@ -12,12 +12,38 @@ namespace HuTaoSupremacy
             this.nodes = new List<Node>();
         }
 
+        //setter and getter
+        public Node getNode(string name)
+        {
+            foreach (Node el in nodes)
+            {
+                if (el.getName() == name)
+                {
+                    return el;
+                }
+            }
+            return null;
+        }
+
+        //method
         public void addNode(Node N)
         {
-            if(!this.nodes.Contains(N))
+            if(!this.hasNode(N.getName()))
             {
                 nodes.Add(N);
             }
+        }
+
+        public bool hasNode(string name)
+        {
+            foreach (Node el in nodes)
+            {
+                if (el.getName() == name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
     class Node
@@ -29,7 +55,19 @@ namespace HuTaoSupremacy
             this.name = name;
             this.neighbor = new List<string>();
         }
+        
+        //setter and getter
+        public void setName(string name)
+        {
+            this.name = name;
+        }
 
+        public string getName()
+        {
+            return this.name;
+        }
+
+        // method
         public void addNeighbor(string name)
         {
             if(!this.neighbor.Contains(name)) {
