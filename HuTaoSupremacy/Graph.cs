@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Msagl.GraphViewerGdi;
 
 namespace HuTaoSupremacy
 {
@@ -61,6 +62,38 @@ namespace HuTaoSupremacy
                     System.Diagnostics.Debug.WriteLine("\t" + neighborName);
                 }
             }
+        }
+
+        public GViewer generateMSAGL()
+        {
+            GViewer viewer = new GViewer();
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+
+            List<string[]> edges = new List<string[]>();
+
+            foreach(Node n in this.nodes)
+            {
+                graph.AddNode(n.getName());
+                foreach(string s in n.getNeighbor())
+                {
+                    //edges.FindIndex(e => e[0] == n.getName() && e[1] == s);
+                    if (edges.FindIndex(e => e[0] == n.getName() && e[1] == s) < 0)
+                    {
+                        var edge = graph.AddEdge(n.getName(), s);
+                        edge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                        edge.Attr.ArrowheadAtSource = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                        string[] e1 = { n.getName(), s };
+                        string[] e2 = { s, n.getName() };
+                        edges.Add(e1);
+                        edges.Add(e2);
+                    }
+                }
+            }
+
+            viewer.Graph = graph;
+            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+
+            return viewer;
         }
     }
     public class Node
