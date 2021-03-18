@@ -13,10 +13,12 @@ namespace HuTaoSupremacy
 {
     public partial class MainWindow : Form
     {
+        private Graph graph;
         private bool hasSelectedFile;
         public MainWindow()
         {
             InitializeComponent();
+            this.graph = null;
             this.hasSelectedFile = false;
         }
 
@@ -42,7 +44,7 @@ namespace HuTaoSupremacy
 
             string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
             tbDebug.Text = text;
-            Utilities.stringToGraph(text);
+            this.graph = Utilities.StringToGraph(text);
 
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();

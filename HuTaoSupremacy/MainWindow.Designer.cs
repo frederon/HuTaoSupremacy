@@ -37,8 +37,8 @@ namespace HuTaoSupremacy
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.tbDebug = new System.Windows.Forms.RichTextBox();
             this.panelGraph = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.dropdownAccount = new System.Windows.Forms.ComboBox();
+            this.dropdownFriends = new System.Windows.Forms.ComboBox();
             this.labelAccount = new System.Windows.Forms.Label();
             this.labelFriends = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -113,23 +113,23 @@ namespace HuTaoSupremacy
             this.panelGraph.Size = new System.Drawing.Size(276, 331);
             this.panelGraph.TabIndex = 8;
             // 
-            // comboBox1
+            // dropdownAccount
             // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(307, 218);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 9;
+            this.dropdownAccount.Enabled = false;
+            this.dropdownAccount.FormattingEnabled = true;
+            this.dropdownAccount.Location = new System.Drawing.Point(307, 218);
+            this.dropdownAccount.Name = "dropdownAccount";
+            this.dropdownAccount.Size = new System.Drawing.Size(121, 23);
+            this.dropdownAccount.TabIndex = 9;
             // 
-            // comboBox2
+            // dropdownFriends
             // 
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(307, 287);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 10;
+            this.dropdownFriends.Enabled = false;
+            this.dropdownFriends.FormattingEnabled = true;
+            this.dropdownFriends.Location = new System.Drawing.Point(307, 287);
+            this.dropdownFriends.Name = "dropdownFriends";
+            this.dropdownFriends.Size = new System.Drawing.Size(121, 23);
+            this.dropdownFriends.TabIndex = 10;
             // 
             // labelAccount
             // 
@@ -156,8 +156,8 @@ namespace HuTaoSupremacy
             this.ClientSize = new System.Drawing.Size(521, 632);
             this.Controls.Add(this.labelFriends);
             this.Controls.Add(this.labelAccount);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dropdownFriends);
+            this.Controls.Add(this.dropdownAccount);
             this.Controls.Add(this.panelGraph);
             this.Controls.Add(this.tbDebug);
             this.Controls.Add(this.buttonSubmit);
@@ -182,8 +182,8 @@ namespace HuTaoSupremacy
         private System.Windows.Forms.Button buttonSubmit;
         private System.Windows.Forms.RichTextBox tbDebug;
         private System.Windows.Forms.Panel panelGraph;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox dropdownAccount;
+        private System.Windows.Forms.ComboBox dropdownFriends;
         private System.Windows.Forms.Label labelAccount;
         private System.Windows.Forms.Label labelFriends;
     }

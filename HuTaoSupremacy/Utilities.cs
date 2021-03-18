@@ -11,8 +11,10 @@ namespace HuTaoSupremacy
             System.Diagnostics.Debug.WriteLine("hello world!");
         }
 
-        public static void stringToGraph(string text)
+        public static Graph StringToGraph(string text)
         {
+            Graph g = new Graph();
+
             int numOfEdges = 0;
 
             string[] lines = text.Split(
@@ -28,12 +30,25 @@ namespace HuTaoSupremacy
                 } else
                 {
                     string[] s = lines[i].Split(' ');
-                    string node1 = s[0];
-                    string node2 = s[1];
-                    System.Diagnostics.Debug.WriteLine(node1);
-                    System.Diagnostics.Debug.WriteLine(node2);
+                    Node n1 = g.getNode(s[0]);
+                    Node n2 = g.getNode(s[1]);
+                    if (n1 == null)
+                    {
+                        n1 = new Node(s[0]);
+                        g.addNode(n1);
+                    }
+                    if (n2 == null)
+                    {
+                        n2 = new Node(s[1]);
+                        g.addNode(n2);
+                    }
+
+                    n1.addNeighbor(n2.getName());
+                    n2.addNeighbor(n1.getName());
                 }
             }
+
+            return g;
         }
     }
 }
