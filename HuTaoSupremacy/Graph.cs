@@ -15,7 +15,7 @@ namespace HuTaoSupremacy
         //setter and getter
         public Node getNode(string name)
         {
-            foreach (Node el in nodes)
+            foreach (Node el in this.nodes)
             {
                 if (el.getName() == name)
                 {
@@ -36,7 +36,7 @@ namespace HuTaoSupremacy
 
         public bool hasNode(string name)
         {
-            foreach (Node el in nodes)
+            foreach (Node el in this.nodes)
             {
                 if (el.getName() == name)
                 {
@@ -44,6 +44,18 @@ namespace HuTaoSupremacy
                 }
             }
             return false;
+        }
+
+        public void displayInfo()
+        {
+            foreach (Node el in this.nodes)
+            {
+                System.Diagnostics.Debug.WriteLine(el.getName() + " :");
+                foreach (string neighborName in el.getNeighbor())
+                {
+                    System.Diagnostics.Debug.WriteLine("\t" + neighborName);
+                }
+            }
         }
     }
     class Node
@@ -65,6 +77,11 @@ namespace HuTaoSupremacy
         public string getName()
         {
             return this.name;
+        }
+
+        public List<string> getNeighbor()
+        {
+            return this.neighbor;
         }
 
         // method
