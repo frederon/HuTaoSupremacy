@@ -13,6 +13,11 @@ namespace HuTaoSupremacy
         }
 
         //setter and getter
+        public List<Node> getNodes()
+        {
+            return this.nodes;
+        }
+
         public Node getNode(string name)
         {
             foreach (Node el in this.nodes)
