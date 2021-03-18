@@ -30,41 +30,22 @@ namespace HuTaoSupremacy
         private void InitializeComponent()
         {
             this.labelTitle = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.dropdownAlgorithm = new System.Windows.Forms.ComboBox();
             this.buttonBrowse = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.labelFilename = new System.Windows.Forms.Label();
+            this.buttonSubmit = new System.Windows.Forms.Button();
+            this.tbDebug = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // labelTitle
             // 
             this.labelTitle.AutoSize = true;
-            this.labelTitle.Location = new System.Drawing.Point(183, 36);
+            this.labelTitle.Location = new System.Drawing.Point(307, 30);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(125, 15);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "People You May Know";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(160, 147);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(94, 19);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(24, 225);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 94);
-            this.listBox1.TabIndex = 2;
             // 
             // dropdownAlgorithm
             // 
@@ -73,7 +54,7 @@ namespace HuTaoSupremacy
             this.dropdownAlgorithm.Items.AddRange(new object[] {
             "BFS",
             "DFS"});
-            this.dropdownAlgorithm.Location = new System.Drawing.Point(183, 118);
+            this.dropdownAlgorithm.Location = new System.Drawing.Point(307, 112);
             this.dropdownAlgorithm.Name = "dropdownAlgorithm";
             this.dropdownAlgorithm.Size = new System.Drawing.Size(121, 23);
             this.dropdownAlgorithm.TabIndex = 3;
@@ -82,7 +63,7 @@ namespace HuTaoSupremacy
             // 
             // buttonBrowse
             // 
-            this.buttonBrowse.Location = new System.Drawing.Point(342, 159);
+            this.buttonBrowse.Location = new System.Drawing.Point(307, 83);
             this.buttonBrowse.Name = "buttonBrowse";
             this.buttonBrowse.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowse.TabIndex = 4;
@@ -94,15 +75,42 @@ namespace HuTaoSupremacy
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
+            // labelFilename
+            // 
+            this.labelFilename.AutoSize = true;
+            this.labelFilename.Location = new System.Drawing.Point(388, 87);
+            this.labelFilename.Name = "labelFilename";
+            this.labelFilename.Size = new System.Drawing.Size(0, 15);
+            this.labelFilename.TabIndex = 5;
+            // 
+            // buttonSubmit
+            // 
+            this.buttonSubmit.Location = new System.Drawing.Point(307, 142);
+            this.buttonSubmit.Name = "buttonSubmit";
+            this.buttonSubmit.Size = new System.Drawing.Size(75, 23);
+            this.buttonSubmit.TabIndex = 6;
+            this.buttonSubmit.Text = "Submit";
+            this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
+            // 
+            // tbDebug
+            // 
+            this.tbDebug.Location = new System.Drawing.Point(12, 360);
+            this.tbDebug.Name = "tbDebug";
+            this.tbDebug.Size = new System.Drawing.Size(100, 96);
+            this.tbDebug.TabIndex = 7;
+            this.tbDebug.Text = "";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 632);
+            this.Controls.Add(this.tbDebug);
+            this.Controls.Add(this.buttonSubmit);
+            this.Controls.Add(this.labelFilename);
             this.Controls.Add(this.buttonBrowse);
             this.Controls.Add(this.dropdownAlgorithm);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.labelTitle);
             this.Name = "MainWindow";
             this.Text = "HuTaoSupremacy";
@@ -114,11 +122,12 @@ namespace HuTaoSupremacy
         #endregion
 
         private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ComboBox dropdownAlgorithm;
         private System.Windows.Forms.Button buttonBrowse;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Label labelFilename;
+        private System.Windows.Forms.Button buttonSubmit;
+        private System.Windows.Forms.RichTextBox tbDebug;
     }
 }
 
