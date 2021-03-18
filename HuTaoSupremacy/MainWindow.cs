@@ -22,6 +22,15 @@ namespace HuTaoSupremacy
             this.hasSelectedFile = false;
         }
 
+        private void addNodesToDropdown()
+        {
+            foreach(Node n in this.graph.getNodes())
+            {
+                dropdownAccount.Items.Add(n.getName());
+                dropdownFriends.Items.Add(n.getName());
+            }
+        }
+
         private void buttonBrowse_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() != DialogResult.Cancel)
@@ -45,6 +54,11 @@ namespace HuTaoSupremacy
             string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
             tbDebug.Text = text;
             this.graph = Utilities.StringToGraph(text);
+            addNodesToDropdown();
+            dropdownAccount.Enabled = true;
+            dropdownFriends.Enabled = true;
+
+            this.graph.displayInfo();
 
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
