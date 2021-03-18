@@ -42,8 +42,7 @@ namespace HuTaoSupremacy
 
             string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
             tbDebug.Text = text;
-            Utilities u = new Utilities();
-            u.printShit();
+            Utilities.stringToGraph(text);
 
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
@@ -62,14 +61,12 @@ namespace HuTaoSupremacy
             c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
             //bind the graph to the viewer 
             viewer.Graph = graph;
-            viewer.Location = new Point(100, 0);
-            viewer.Width = 300;
-            viewer.Height = 300;
             //associate the viewer with the form 
-            this.SuspendLayout();
+            this.panelGraph.SuspendLayout();
+            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
             //viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Controls.Add(viewer);
-            this.ResumeLayout();
+            this.panelGraph.Controls.Add(viewer);
+            this.panelGraph.ResumeLayout();
         }
     }
 }
