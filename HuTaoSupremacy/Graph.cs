@@ -127,6 +127,7 @@ namespace HuTaoSupremacy
         {
             if(!this.neighbor.Contains(name)) {
                 this.neighbor.Add(name);
+                this.neighbor.Sort();
             }
         }
     }

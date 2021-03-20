@@ -41,6 +41,7 @@ namespace HuTaoSupremacy
             this.dropdownFriends = new System.Windows.Forms.ComboBox();
             this.labelAccount = new System.Windows.Forms.Label();
             this.labelFriends = new System.Windows.Forms.Label();
+            this.buttonResult = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -102,7 +103,7 @@ namespace HuTaoSupremacy
             // 
             this.tbDebug.Location = new System.Drawing.Point(12, 360);
             this.tbDebug.Name = "tbDebug";
-            this.tbDebug.Size = new System.Drawing.Size(100, 96);
+            this.tbDebug.Size = new System.Drawing.Size(497, 260);
             this.tbDebug.TabIndex = 7;
             this.tbDebug.Text = "";
             // 
@@ -117,7 +118,7 @@ namespace HuTaoSupremacy
             // 
             this.dropdownAccount.Enabled = false;
             this.dropdownAccount.FormattingEnabled = true;
-            this.dropdownAccount.Location = new System.Drawing.Point(307, 218);
+            this.dropdownAccount.Location = new System.Drawing.Point(307, 237);
             this.dropdownAccount.Name = "dropdownAccount";
             this.dropdownAccount.Size = new System.Drawing.Size(121, 23);
             this.dropdownAccount.TabIndex = 9;
@@ -134,7 +135,7 @@ namespace HuTaoSupremacy
             // labelAccount
             // 
             this.labelAccount.AutoSize = true;
-            this.labelAccount.Location = new System.Drawing.Point(307, 200);
+            this.labelAccount.Location = new System.Drawing.Point(307, 219);
             this.labelAccount.Name = "labelAccount";
             this.labelAccount.Size = new System.Drawing.Size(98, 15);
             this.labelAccount.TabIndex = 11;
@@ -149,11 +150,22 @@ namespace HuTaoSupremacy
             this.labelFriends.TabIndex = 12;
             this.labelFriends.Text = "Explore friends with:";
             // 
+            // buttonResult
+            // 
+            this.buttonResult.Location = new System.Drawing.Point(307, 317);
+            this.buttonResult.Name = "buttonResult";
+            this.buttonResult.Size = new System.Drawing.Size(121, 23);
+            this.buttonResult.TabIndex = 13;
+            this.buttonResult.Text = "Show result";
+            this.buttonResult.UseVisualStyleBackColor = true;
+            this.buttonResult.Click += new System.EventHandler(this.buttonResult_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 632);
+            this.Controls.Add(this.buttonResult);
             this.Controls.Add(this.labelFriends);
             this.Controls.Add(this.labelAccount);
             this.Controls.Add(this.dropdownFriends);
@@ -186,6 +198,7 @@ namespace HuTaoSupremacy
         private System.Windows.Forms.ComboBox dropdownFriends;
         private System.Windows.Forms.Label labelAccount;
         private System.Windows.Forms.Label labelFriends;
+        private System.Windows.Forms.Button buttonResult;
     }
 }
 

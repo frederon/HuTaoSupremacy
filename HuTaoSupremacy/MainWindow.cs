@@ -40,7 +40,7 @@ namespace HuTaoSupremacy
             {
                 this.hasSelectedFile = false;
             }
-            labelFilename.Text = openFileDialog.FileName;
+            labelFilename.Text = openFileDialog.FileName.Split('\\').Last();
         }
 
         private void buttonSubmit_Click(object sender, EventArgs e)
@@ -54,6 +54,9 @@ namespace HuTaoSupremacy
             string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
             tbDebug.Text = text;
             this.graph = Utilities.StringToGraph(text);
+
+            dropdownAccount.Items.Clear();
+            dropdownFriends.Items.Clear();
             addNodesToDropdown();
             dropdownAccount.Enabled = true;
             dropdownFriends.Enabled = true;
@@ -65,6 +68,11 @@ namespace HuTaoSupremacy
             this.panelGraph.SuspendLayout();
             this.panelGraph.Controls.Add(viewer);
             this.panelGraph.ResumeLayout();
+        }
+
+        private void buttonResult_Click(object sender, EventArgs e)
+        {
+            Utilities.recommendationBFS(this.graph, this.graph.getNode(dropdownAccount.Text));
         }
     }
 }
