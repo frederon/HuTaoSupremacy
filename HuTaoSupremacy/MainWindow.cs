@@ -72,16 +72,33 @@ namespace HuTaoSupremacy
 
         private void buttonResult_Click(object sender, EventArgs e)
         {
-            Dictionary<string, List<string>> recommendation = Utilities.recommendationBFS(
-                this.graph, 
-                this.graph.getNode(dropdownAccount.Text)
-            );
-            System.Diagnostics.Debug.WriteLine("===============");
-            Dictionary<string, List<string>> explore = Utilities.exploreBFS(
-                this.graph, 
-                this.graph.getNode(dropdownAccount.Text), 
-                this.graph.getNode(dropdownFriends.Text)
-            );
+            if (dropdownAccount.Text == "" || dropdownFriends.Text == "")
+            {
+                MessageBox.Show("You need to enter account and explore friends field", "Error");
+                return;
+            }
+            Dictionary<string, List<string>> recommendation = null;
+            Dictionary<string, List<string>> explore = null;
+            if (dropdownAlgorithm.Text == "BFS")
+            {
+                recommendation = Utilities.recommendationBFS(
+                    this.graph, 
+                    this.graph.getNode(dropdownAccount.Text)
+                );
+                explore = Utilities.exploreBFS(
+                    this.graph, 
+                    this.graph.getNode(dropdownAccount.Text), 
+                    this.graph.getNode(dropdownFriends.Text)
+                );
+            } else if (dropdownAlgorithm.Text == "DFS")
+            {
+                MessageBox.Show("Not yet implemented!", "Error");
+                return;
+            } else
+            {
+                MessageBox.Show("Please select an algorithm", "Error");
+                return;
+            }
 
             tbDebug.Text = Utilities.formatResult(
                 dropdownAccount.Text,
