@@ -72,7 +72,23 @@ namespace HuTaoSupremacy
 
         private void buttonResult_Click(object sender, EventArgs e)
         {
-            Utilities.recommendationBFS(this.graph, this.graph.getNode(dropdownAccount.Text));
+            Dictionary<string, List<string>> recommendation = Utilities.recommendationBFS(
+                this.graph, 
+                this.graph.getNode(dropdownAccount.Text)
+            );
+            System.Diagnostics.Debug.WriteLine("===============");
+            Dictionary<string, List<string>> explore = Utilities.exploreBFS(
+                this.graph, 
+                this.graph.getNode(dropdownAccount.Text), 
+                this.graph.getNode(dropdownFriends.Text)
+            );
+
+            tbDebug.Text = Utilities.formatResult(
+                dropdownAccount.Text,
+                dropdownFriends.Text,
+                recommendation,
+                explore
+            );
         }
     }
 }
