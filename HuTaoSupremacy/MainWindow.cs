@@ -51,23 +51,32 @@ namespace HuTaoSupremacy
                 return;
             }
 
-            string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
-            tbDebug.Text = text;
-            this.graph = Utilities.StringToGraph(text);
+            try
+            {
+                string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
+                this.graph = Utilities.StringToGraph(text);
 
-            dropdownAccount.Items.Clear();
-            dropdownFriends.Items.Clear();
-            addNodesToDropdown();
-            dropdownAccount.Enabled = true;
-            dropdownFriends.Enabled = true;
+                dropdownAccount.Items.Clear();
+                dropdownFriends.Items.Clear();
+                addNodesToDropdown();
+                dropdownAccount.Enabled = true;
+                dropdownFriends.Enabled = true;
 
-            this.graph.displayInfo();
+                this.graph.displayInfo();
 
-            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = this.graph.generateMSAGL();
+                Microsoft.Msagl.GraphViewerGdi.GViewer viewer = this.graph.generateMSAGL();
 
-            this.panelGraph.SuspendLayout();
-            this.panelGraph.Controls.Add(viewer);
-            this.panelGraph.ResumeLayout();
+                this.panelGraph.SuspendLayout();
+                this.panelGraph.Controls.Add(viewer);
+                this.panelGraph.ResumeLayout();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Wrong format", "Error");
+                this.hasSelectedFile = false;
+                labelFilename.Text = "";
+            }
+
         }
 
         private void buttonResult_Click(object sender, EventArgs e)
