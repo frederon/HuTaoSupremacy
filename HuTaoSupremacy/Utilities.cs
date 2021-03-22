@@ -63,7 +63,7 @@ namespace HuTaoSupremacy
            
         }
 
-        public static void recommendationDFS(Graph G, Node N)
+        public static Dictionary<string, List<string>> recommendationDFS(Graph G, Node N)
         {
             Dictionary<string, bool> visited = new Dictionary<string, bool>();
             G.getNodes().ForEach(n => visited.Add(n.getName(), false));
@@ -79,12 +79,14 @@ namespace HuTaoSupremacy
                 }
             );
 
-            DFSrekursif(G, N, N, ref visited, ref result); 
-            foreach (KeyValuePair<string, List<string>> kvp in result)
+            DFSrekursif(G, N, N, ref visited, ref result);
+            return result;
+            /* foreach (KeyValuePair<string, List<string>> kvp in result)
             {
                 System.Diagnostics.Debug.WriteLine(kvp.Key + ":");
                 kvp.Value.ForEach(n => System.Diagnostics.Debug.WriteLine("\t" + n));
             }
+            */
         }
 
         private static void DFSrekursif(Graph G, Node SimpulAwal, Node N, ref Dictionary<string, bool> visited, ref Dictionary<string, List<string>> result)
