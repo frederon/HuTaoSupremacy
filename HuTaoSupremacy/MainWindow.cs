@@ -8,18 +8,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace HuTaoSupremacy
 {
-    public partial class MainWindow : Form
+    public partial class MainWindow : MaterialForm
     {
         private Graph graph;
-        private bool hasSelectedFile;
+        private string selectedFilePath;
+        private string selectedAlgorithm;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            
+
+            this.AllowDrop = true;
+            this.DragEnter += new DragEventHandler(MainWindow_DragEnter);
+            this.DragDrop += new DragEventHandler(MainWindow_DragDrop);
+
             this.graph = null;
-            this.hasSelectedFile = false;
+            this.selectedAlgorithm = "BFS";
+            this.selectedFilePath = "";
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            this.bfsAlgorithm.Checked = this.selectedAlgorithm == "BFS";
+            this.dfsAlgorithm.Checked = this.selectedAlgorithm == "DFS";
+        }
+
+        void MainWindow_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        void MainWindow_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            this.selectedFilePath = files.Last();
+            labelFilename.Text = this.selectedFilePath.Split('\\').Last();
         }
 
         private void addNodesToDropdown()
@@ -35,17 +68,17 @@ namespace HuTaoSupremacy
         {
             if (openFileDialog.ShowDialog() != DialogResult.Cancel)
             {
-                this.hasSelectedFile = true;
+                this.selectedFilePath = openFileDialog.FileName;
             } else
             {
-                this.hasSelectedFile = false;
+                this.selectedFilePath = "";
             }
             labelFilename.Text = openFileDialog.FileName.Split('\\').Last();
         }
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
-            if (!this.hasSelectedFile)
+            if (this.selectedFilePath == "")
             {
                 MessageBox.Show("You need to select a file", "Error");
                 return;
@@ -53,7 +86,7 @@ namespace HuTaoSupremacy
 
             try
             {
-                string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
+                string text = System.IO.File.ReadAllText(@selectedFilePath);
                 this.graph = Utilities.StringToGraph(text);
 
                 dropdownAccount.Items.Clear();
@@ -74,7 +107,7 @@ namespace HuTaoSupremacy
             catch (Exception err)
             {
                 MessageBox.Show("Wrong format", "Error");
-                this.hasSelectedFile = false;
+                this.selectedFilePath = "";
                 labelFilename.Text = "";
             }
 
@@ -96,7 +129,7 @@ namespace HuTaoSupremacy
             Dictionary<string, List<string>> recommendation = null;
             Dictionary<string, List<string>> explore = null;
 
-            if (dropdownAlgorithm.Text == "BFS")
+            if (this.selectedAlgorithm == "BFS")
             {
                 recommendation = Utilities.recommendationBFS(
                     this.graph, 
@@ -107,7 +140,7 @@ namespace HuTaoSupremacy
                     this.graph.getNode(dropdownAccount.Text), 
                     this.graph.getNode(dropdownFriends.Text)
                 );
-            } else if (dropdownAlgorithm.Text == "DFS")
+            } else if (this.selectedAlgorithm == "DFS")
             {
                 recommendation = Utilities.recommendationDFS(
                     this.graph,
@@ -146,9 +179,27 @@ namespace HuTaoSupremacy
             );
         }
 
-        public string BFSorDFS()
+        private void bfsAlgorithm_CheckedChanged(object sender, EventArgs e)
         {
-            return dropdownAlgorithm.Items[dropdownAlgorithm.SelectedIndex].ToString();
+            if (bfsAlgorithm.Checked)
+            {
+                this.selectedAlgorithm = "BFS";
+            } else
+            {
+                this.selectedAlgorithm = "DFS";
+            }
+        }
+
+        private void dropdownFriends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bfsAlgorithm.Checked)
+            {
+                this.selectedAlgorithm = "BFS";
+            }
+            else
+            {
+                this.selectedAlgorithm = "DFS";
+            }
         }
     }
 }
