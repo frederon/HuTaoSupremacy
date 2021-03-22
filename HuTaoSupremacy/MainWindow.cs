@@ -74,5 +74,10 @@ namespace HuTaoSupremacy
         {
             Utilities.recommendationBFS(this.graph, this.graph.getNode(dropdownAccount.Text));
         }
+
+        public string BFSorDFS()
+        {
+            return dropdownAlgorithm.Items[dropdownAlgorithm.SelectedIndex].ToString();
+        }
     }
 }

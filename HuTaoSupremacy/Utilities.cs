@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HuTaoSupremacy
 {
@@ -18,7 +17,8 @@ namespace HuTaoSupremacy
 
             Dictionary<string, List<string>> result = new Dictionary<string, List<string>>();
             g.getNodes().ForEach(
-                n => {
+                n =>
+                {
                     if (n.getName() != s.getName() && !s.getNeighbor().Contains(n.getName()))
                     {
                         result.Add(n.getName(), new List<string>());
@@ -35,7 +35,7 @@ namespace HuTaoSupremacy
             while (queue.Count > 0)
             {
                 Node currentNode = queue.Dequeue();
-                foreach(string neighbor in currentNode.getNeighbor())
+                foreach (string neighbor in currentNode.getNeighbor())
                 {
                     if (!visited[neighbor])
                     {
@@ -45,7 +45,8 @@ namespace HuTaoSupremacy
                         if (result.ContainsKey(neighbor))
                         {
                             neighborNode.getNeighbor().ForEach(
-                                neighborOfNeighbor => {
+                                neighborOfNeighbor =>
+                                {
                                     if (friends.Contains(neighborOfNeighbor))
                                     {
                                         result[neighbor].Add(neighborOfNeighbor);
@@ -57,10 +58,104 @@ namespace HuTaoSupremacy
                 }
             }
 
-            foreach(KeyValuePair<string, List<string>> kvp in result) {
+           
+        }
+
+        public static void recommendationDFS(Graph G, Node N)
+        {
+            Dictionary<string, bool> visited = new Dictionary<string, bool>();
+            G.getNodes().ForEach(n => visited.Add(n.getName(), false));
+
+            Dictionary<string, List<string>> result = new Dictionary<string, List<string>>();
+            G.getNodes().ForEach(
+                n =>
+                {
+                    if (n.getName() != N.getName() && !N.getNeighbor().Contains(n.getName()))
+                    {
+                        result.Add(n.getName(), new List<string>());
+                    }
+                }
+            );
+
+            DFSrekursif(G, N, N, ref visited, ref result); 
+            foreach (KeyValuePair<string, List<string>> kvp in result)
+            {
                 System.Diagnostics.Debug.WriteLine(kvp.Key + ":");
                 kvp.Value.ForEach(n => System.Diagnostics.Debug.WriteLine("\t" + n));
             }
+        }
+
+        private static void DFSrekursif(Graph G, Node SimpulAwal, Node N, ref Dictionary<string, bool> visited, ref Dictionary<string, List<string>> result)
+        {
+            if (!visited[SimpulAwal.getName()])
+            {
+                visited[SimpulAwal.getName()] = true; // nandain klo udh dikunjungin
+            }
+
+            List<string> friends = SimpulAwal.getNeighbor(); // list semua tetangga simpul awal
+            
+            if (SimpulAwal != N)
+            {
+                visited[N.getName()] = true;
+                if (!friends.Contains(N.getName()))
+                {
+                    List<string> resultList = new List<string>();
+                    N.getNeighbor().ForEach(
+                       n =>
+                       {
+                           if (friends.Contains(n))
+                           {
+                                resultList.Add(n);
+                           }
+                       }
+                    );
+                    result[N.getName()] = resultList;
+                }
+            }
+
+            // cari neighbor selanjutnya yang blom dikunjungin
+            while (!isAllNeighborVisited(visited, N))
+            {
+                int i = 0;
+                bool OutOfBounds = false;
+                string nextNeighbor = N.getNeighbor()[i];
+                i++;
+                while (visited[nextNeighbor] && !OutOfBounds)
+                {
+                    if (i == N.getNeighbor().Count)
+                    {
+                        OutOfBounds = true;
+                    }
+                    else
+                    {
+                        nextNeighbor = N.getNeighbor()[i];
+                        i++;
+                    }
+                }
+                if (OutOfBounds)
+                {
+                    return;
+                }
+                DFSrekursif(G, SimpulAwal, G.getNode(nextNeighbor), ref visited, ref result);
+            }
+            
+        }
+
+        private static bool isAllNeighborVisited(Dictionary<string, bool> D, Node N)
+        {
+            bool visited = true;
+            List<string> allNeighbor = N.getNeighbor();
+            foreach (KeyValuePair<string, bool> x in D)
+            {
+                if (allNeighbor.Contains(x.Key))
+                {
+                    if (!x.Value)
+                    {
+                        visited = false;
+                    }
+                }
+            }
+            return visited;
         }
 
         public static List<string> exploreBFS(Graph g, Node s, Node t)
@@ -102,12 +197,13 @@ namespace HuTaoSupremacy
                 StringSplitOptions.None
             );
 
-            for(int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
                 if (i == 0)
                 {
                     numOfEdges = Int32.Parse(lines[i]);
-                } else
+                }
+                else
                 {
                     string[] s = lines[i].Split(' ');
                     Node n1 = g.getNode(s[0]);
