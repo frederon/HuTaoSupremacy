@@ -61,8 +61,7 @@ namespace HuTaoSupremacy
             this.dropdownAlgorithm.Items.AddRange(new object[] {
             "BFS",
             "DFS"});
-            this.dropdownAlgorithm.Location = new System.Drawing.Point(439, 187);
-            this.dropdownAlgorithm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dropdownAlgorithm.Location = new System.Drawing.Point(307, 182);
             this.dropdownAlgorithm.Name = "dropdownAlgorithm";
             this.dropdownAlgorithm.Size = new System.Drawing.Size(171, 33);
             this.dropdownAlgorithm.TabIndex = 3;
@@ -95,8 +94,7 @@ namespace HuTaoSupremacy
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(439, 237);
-            this.buttonSubmit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonSubmit.Location = new System.Drawing.Point(307, 112);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(107, 38);
             this.buttonSubmit.TabIndex = 6;

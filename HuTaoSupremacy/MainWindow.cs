@@ -51,28 +51,70 @@ namespace HuTaoSupremacy
                 return;
             }
 
-            string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
-            tbDebug.Text = text;
-            this.graph = Utilities.StringToGraph(text);
+            try
+            {
+                string text = System.IO.File.ReadAllText(@openFileDialog.FileName);
+                this.graph = Utilities.StringToGraph(text);
 
-            dropdownAccount.Items.Clear();
-            dropdownFriends.Items.Clear();
-            addNodesToDropdown();
-            dropdownAccount.Enabled = true;
-            dropdownFriends.Enabled = true;
+                dropdownAccount.Items.Clear();
+                dropdownFriends.Items.Clear();
+                addNodesToDropdown();
+                dropdownAccount.Enabled = true;
+                dropdownFriends.Enabled = true;
 
-            this.graph.displayInfo();
+                this.graph.displayInfo();
 
-            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = this.graph.generateMSAGL();
+                Microsoft.Msagl.GraphViewerGdi.GViewer viewer = this.graph.generateMSAGL();
 
-            this.panelGraph.SuspendLayout();
-            this.panelGraph.Controls.Add(viewer);
-            this.panelGraph.ResumeLayout();
+                this.panelGraph.SuspendLayout();
+                this.panelGraph.Controls.Add(viewer);
+                this.panelGraph.ResumeLayout();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Wrong format", "Error");
+                this.hasSelectedFile = false;
+                labelFilename.Text = "";
+            }
+
         }
 
         private void buttonResult_Click(object sender, EventArgs e)
         {
-            Utilities.recommendationBFS(this.graph, this.graph.getNode(dropdownAccount.Text));
+            if (dropdownAccount.Text == "" || dropdownFriends.Text == "")
+            {
+                MessageBox.Show("You need to enter account and explore friends field", "Error");
+                return;
+            }
+            Dictionary<string, List<string>> recommendation = null;
+            Dictionary<string, List<string>> explore = null;
+            if (dropdownAlgorithm.Text == "BFS")
+            {
+                recommendation = Utilities.recommendationBFS(
+                    this.graph, 
+                    this.graph.getNode(dropdownAccount.Text)
+                );
+                explore = Utilities.exploreBFS(
+                    this.graph, 
+                    this.graph.getNode(dropdownAccount.Text), 
+                    this.graph.getNode(dropdownFriends.Text)
+                );
+            } else if (dropdownAlgorithm.Text == "DFS")
+            {
+                MessageBox.Show("Not yet implemented!", "Error");
+                return;
+            } else
+            {
+                MessageBox.Show("Please select an algorithm", "Error");
+                return;
+            }
+
+            tbDebug.Text = Utilities.formatResult(
+                dropdownAccount.Text,
+                dropdownFriends.Text,
+                recommendation,
+                explore
+            );
         }
 
         public string BFSorDFS()
