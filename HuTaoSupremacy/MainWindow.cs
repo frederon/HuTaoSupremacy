@@ -53,6 +53,7 @@ namespace HuTaoSupremacy
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             this.selectedFilePath = files.Last();
             labelFilename.Text = this.selectedFilePath.Split('\\').Last();
+            generateGraph();
         }
 
         private void addNodesToDropdown()
@@ -64,19 +65,7 @@ namespace HuTaoSupremacy
             }
         }
 
-        private void buttonBrowse_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() != DialogResult.Cancel)
-            {
-                this.selectedFilePath = openFileDialog.FileName;
-            } else
-            {
-                this.selectedFilePath = "";
-            }
-            labelFilename.Text = openFileDialog.FileName.Split('\\').Last();
-        }
-
-        private void buttonSubmit_Click(object sender, EventArgs e)
+        private void generateGraph()
         {
             if (this.selectedFilePath == "")
             {
@@ -110,6 +99,24 @@ namespace HuTaoSupremacy
                 this.selectedFilePath = "";
                 labelFilename.Text = "";
             }
+        }
+
+        private void buttonBrowse_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() != DialogResult.Cancel)
+            {
+                this.selectedFilePath = openFileDialog.FileName;
+            } else
+            {
+                this.selectedFilePath = "";
+            }
+            labelFilename.Text = openFileDialog.FileName.Split('\\').Last();
+            generateGraph();
+        }
+
+        private void buttonSubmit_Click(object sender, EventArgs e)
+        {
+            
 
         }
 
