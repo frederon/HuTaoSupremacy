@@ -206,17 +206,66 @@ namespace HuTaoSupremacy
             
         }
 
-        public static void exploreDFS(Graph G, Node awal, Node tujuan)
+        public static Dictionary<string, List<string>> exploreDFS(Graph G, Node awal, Node tujuan)
         {
             Dictionary<string, bool> visited = new Dictionary<string, bool>();
             G.getNodes().ForEach(n => visited.Add(n.getName(), false));
 
             Dictionary<string, List<string>> path = new Dictionary<string, List<string>>();
-            G.getNodes().ForEach(n => path.Add(n.getName(), new List<string>()));
+            path.Add(awal.getName(), new List<string>());
 
-
+            RekursifDFS(G, awal, awal, tujuan, ref visited, ref path);
+            return path;
         }
 
+        private static void RekursifDFS(Graph G, Node awal, Node sekarang, Node tujuan, ref Dictionary<string, bool> visited, ref Dictionary<string, List<string>> path)
+        {
+            if (!visited[awal.getName()])
+            {
+                visited[awal.getName()] = true;
+                path[awal.getName()].Add(awal.getName());
+            }
+            if (sekarang == tujuan)
+            {
+                path[awal.getName()].Add(sekarang.getName());
+            }
+            else
+            {
+                if (isAllNeighborVisited(visited, sekarang))
+                {
+                    path[awal.getName()].Remove(sekarang.getName());
+                    return;
+                }
+                else
+                {
+                    while (!isAllNeighborVisited(visited, sekarang))
+                    {
+                        int i = 0;
+                        bool OutOfBounds = false;
+                        string nextNeighbor = sekarang.getNeighbor()[i];
+                        i++;
+                        while (visited[nextNeighbor] && !OutOfBounds)
+                        {
+                            if (i == sekarang.getNeighbor().Count)
+                            {
+                                OutOfBounds = true;
+                            }
+                            else
+                            {
+                                nextNeighbor = sekarang.getNeighbor()[i];
+                                i++;
+                            }
+                        }
+                        if (!OutOfBounds)
+                        {
+                            path[awal.getName()].Add(G.getNode(nextNeighbor).getName());
+                            RekursifDFS(G, awal, G.getNode(nextNeighbor), tujuan, ref visited, ref path);
+                        }
+                    }
+                }
+                
+            }
+        }
         public static Graph StringToGraph(string text)
         {
             Graph g = new Graph();
