@@ -141,5 +141,10 @@ namespace HuTaoSupremacy
                 explore
             );
         }
+
+        public string BFSorDFS()
+        {
+            return dropdownAlgorithm.Items[dropdownAlgorithm.SelectedIndex].ToString();
+        }
     }
 }
