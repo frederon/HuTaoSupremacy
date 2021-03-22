@@ -177,7 +177,7 @@ namespace HuTaoSupremacy
             Node currentNode = queue.Dequeue();
             visited[currentNode.getName()] = true;
 
-            while (currentNode.getName() != t.getName() && queue.Count > 0)
+            while (currentNode.getName() != t.getName())
             {
                 foreach (string neighbor in currentNode.getNeighbor())
                 {
@@ -193,7 +193,13 @@ namespace HuTaoSupremacy
                         path[neighbor].Add(currentNode.getName());
                     }
                 }
-                currentNode = queue.Dequeue();
+                if (queue.Count > 0)
+                {
+                    currentNode = queue.Dequeue();
+                } else
+                {
+                    break;
+                }
             }
 
             return path;

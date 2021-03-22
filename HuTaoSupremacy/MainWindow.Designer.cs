@@ -47,10 +47,9 @@ namespace HuTaoSupremacy
             // labelTitle
             // 
             this.labelTitle.AutoSize = true;
-            this.labelTitle.Location = new System.Drawing.Point(439, 50);
-            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitle.Location = new System.Drawing.Point(307, 30);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(187, 25);
+            this.labelTitle.Size = new System.Drawing.Size(125, 15);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "People You May Know";
             // 
@@ -61,19 +60,19 @@ namespace HuTaoSupremacy
             this.dropdownAlgorithm.Items.AddRange(new object[] {
             "BFS",
             "DFS"});
-            this.dropdownAlgorithm.Location = new System.Drawing.Point(307, 182);
+            this.dropdownAlgorithm.Location = new System.Drawing.Point(307, 184);
+            this.dropdownAlgorithm.Margin = new System.Windows.Forms.Padding(2);
             this.dropdownAlgorithm.Name = "dropdownAlgorithm";
-            this.dropdownAlgorithm.Size = new System.Drawing.Size(171, 33);
+            this.dropdownAlgorithm.Size = new System.Drawing.Size(121, 23);
             this.dropdownAlgorithm.TabIndex = 3;
             this.dropdownAlgorithm.Text = "Select algorithm";
             this.dropdownAlgorithm.ValueMember = "BFS,DFS";
             // 
             // buttonBrowse
             // 
-            this.buttonBrowse.Location = new System.Drawing.Point(439, 138);
-            this.buttonBrowse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonBrowse.Location = new System.Drawing.Point(306, 60);
             this.buttonBrowse.Name = "buttonBrowse";
-            this.buttonBrowse.Size = new System.Drawing.Size(107, 38);
+            this.buttonBrowse.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowse.TabIndex = 4;
             this.buttonBrowse.Text = "Browse";
             this.buttonBrowse.UseVisualStyleBackColor = true;
@@ -86,17 +85,17 @@ namespace HuTaoSupremacy
             // labelFilename
             // 
             this.labelFilename.AutoSize = true;
-            this.labelFilename.Location = new System.Drawing.Point(554, 145);
-            this.labelFilename.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFilename.Location = new System.Drawing.Point(381, -52);
             this.labelFilename.Name = "labelFilename";
-            this.labelFilename.Size = new System.Drawing.Size(0, 25);
+            this.labelFilename.Size = new System.Drawing.Size(0, 15);
             this.labelFilename.TabIndex = 5;
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(307, 112);
+            this.buttonSubmit.Location = new System.Drawing.Point(306, 88);
+            this.buttonSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(107, 38);
+            this.buttonSubmit.Size = new System.Drawing.Size(75, 23);
             this.buttonSubmit.TabIndex = 6;
             this.buttonSubmit.Text = "Submit";
             this.buttonSubmit.UseVisualStyleBackColor = true;
@@ -104,67 +103,60 @@ namespace HuTaoSupremacy
             // 
             // tbDebug
             // 
-            this.tbDebug.Location = new System.Drawing.Point(17, 600);
-            this.tbDebug.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbDebug.Location = new System.Drawing.Point(12, 360);
             this.tbDebug.Name = "tbDebug";
-            this.tbDebug.Size = new System.Drawing.Size(708, 431);
+            this.tbDebug.Size = new System.Drawing.Size(497, 260);
             this.tbDebug.TabIndex = 7;
             this.tbDebug.Text = "";
             // 
             // panelGraph
             // 
-            this.panelGraph.Location = new System.Drawing.Point(17, 20);
-            this.panelGraph.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelGraph.Location = new System.Drawing.Point(12, 12);
             this.panelGraph.Name = "panelGraph";
-            this.panelGraph.Size = new System.Drawing.Size(394, 552);
+            this.panelGraph.Size = new System.Drawing.Size(276, 331);
             this.panelGraph.TabIndex = 8;
             // 
             // dropdownAccount
             // 
             this.dropdownAccount.Enabled = false;
             this.dropdownAccount.FormattingEnabled = true;
-            this.dropdownAccount.Location = new System.Drawing.Point(439, 395);
-            this.dropdownAccount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dropdownAccount.Location = new System.Drawing.Point(307, 237);
             this.dropdownAccount.Name = "dropdownAccount";
-            this.dropdownAccount.Size = new System.Drawing.Size(171, 33);
+            this.dropdownAccount.Size = new System.Drawing.Size(121, 23);
             this.dropdownAccount.TabIndex = 9;
             // 
             // dropdownFriends
             // 
             this.dropdownFriends.Enabled = false;
             this.dropdownFriends.FormattingEnabled = true;
-            this.dropdownFriends.Location = new System.Drawing.Point(439, 478);
-            this.dropdownFriends.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dropdownFriends.Location = new System.Drawing.Point(307, 287);
             this.dropdownFriends.Name = "dropdownFriends";
-            this.dropdownFriends.Size = new System.Drawing.Size(171, 33);
+            this.dropdownFriends.Size = new System.Drawing.Size(121, 23);
             this.dropdownFriends.TabIndex = 10;
             // 
             // labelAccount
             // 
             this.labelAccount.AutoSize = true;
-            this.labelAccount.Location = new System.Drawing.Point(439, 365);
-            this.labelAccount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAccount.Location = new System.Drawing.Point(307, 219);
             this.labelAccount.Name = "labelAccount";
-            this.labelAccount.Size = new System.Drawing.Size(146, 25);
+            this.labelAccount.Size = new System.Drawing.Size(98, 15);
             this.labelAccount.TabIndex = 11;
             this.labelAccount.Text = "Choose Account:";
             // 
             // labelFriends
             // 
             this.labelFriends.AutoSize = true;
-            this.labelFriends.Location = new System.Drawing.Point(439, 448);
-            this.labelFriends.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFriends.Location = new System.Drawing.Point(307, 269);
             this.labelFriends.Name = "labelFriends";
-            this.labelFriends.Size = new System.Drawing.Size(171, 25);
+            this.labelFriends.Size = new System.Drawing.Size(114, 15);
             this.labelFriends.TabIndex = 12;
             this.labelFriends.Text = "Explore friends with:";
             // 
             // buttonResult
             // 
-            this.buttonResult.Location = new System.Drawing.Point(439, 528);
-            this.buttonResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonResult.Location = new System.Drawing.Point(307, 317);
             this.buttonResult.Name = "buttonResult";
-            this.buttonResult.Size = new System.Drawing.Size(173, 38);
+            this.buttonResult.Size = new System.Drawing.Size(121, 23);
             this.buttonResult.TabIndex = 13;
             this.buttonResult.Text = "Show result";
             this.buttonResult.UseVisualStyleBackColor = true;
@@ -172,9 +164,9 @@ namespace HuTaoSupremacy
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 1050);
+            this.ClientSize = new System.Drawing.Size(521, 630);
             this.Controls.Add(this.buttonResult);
             this.Controls.Add(this.labelFriends);
             this.Controls.Add(this.labelAccount);
@@ -187,7 +179,6 @@ namespace HuTaoSupremacy
             this.Controls.Add(this.buttonBrowse);
             this.Controls.Add(this.dropdownAlgorithm);
             this.Controls.Add(this.labelTitle);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainWindow";
             this.Text = "HuTaoSupremacy";
             this.ResumeLayout(false);

@@ -109,6 +109,10 @@ namespace HuTaoSupremacy
                 );
             } else if (dropdownAlgorithm.Text == "DFS")
             {
+                recommendation = Utilities.recommendationDFS(
+                    this.graph,
+                    this.graph.getNode(dropdownAccount.Text)
+                );
                 MessageBox.Show("Not yet implemented!", "Error");
                 return;
             } else
