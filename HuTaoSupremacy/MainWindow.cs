@@ -84,10 +84,15 @@ namespace HuTaoSupremacy
         {
             if (dropdownAccount.Text == "" || dropdownFriends.Text == "")
             {
-                MessageBox.Show("You need to enter account and explore friends field", "Error");
+                MessageBox.Show("You need to select account and explore friends field", "Error");
                 return;
             }
-
+            if (!this.graph.hasNode(dropdownAccount.Text) || !this.graph.hasNode(dropdownFriends.Text))
+            {
+                MessageBox.Show("Account or explore friends field is not valid", "Error");
+                return;
+            }
+            
             Dictionary<string, List<string>> recommendation = null;
             Dictionary<string, List<string>> explore = null;
 

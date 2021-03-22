@@ -81,7 +81,7 @@ namespace HuTaoSupremacy
             Node currentNode = queue.Dequeue();
             visited[currentNode.getName()] = true;
 
-            while (currentNode.getName() != t.getName())
+            while (currentNode.getName() != t.getName() && queue.Count > 0)
             {
                 foreach (string neighbor in currentNode.getNeighbor())
                 {

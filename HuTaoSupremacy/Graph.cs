@@ -90,7 +90,7 @@ namespace HuTaoSupremacy
                 }
             }
 
-            if (paths != null)
+            if (paths != null && paths.Count > 1)
             {
                 foreach (Node node in paths)
                 {
