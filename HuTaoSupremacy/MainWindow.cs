@@ -66,6 +66,7 @@ namespace HuTaoSupremacy
 
                 Microsoft.Msagl.GraphViewerGdi.GViewer viewer = this.graph.generateMSAGL();
 
+                this.panelGraph.Controls.Clear();
                 this.panelGraph.SuspendLayout();
                 this.panelGraph.Controls.Add(viewer);
                 this.panelGraph.ResumeLayout();
@@ -86,8 +87,10 @@ namespace HuTaoSupremacy
                 MessageBox.Show("You need to enter account and explore friends field", "Error");
                 return;
             }
+
             Dictionary<string, List<string>> recommendation = null;
             Dictionary<string, List<string>> explore = null;
+
             if (dropdownAlgorithm.Text == "BFS")
             {
                 recommendation = Utilities.recommendationBFS(
@@ -108,6 +111,23 @@ namespace HuTaoSupremacy
                 MessageBox.Show("Please select an algorithm", "Error");
                 return;
             }
+
+            List<Node> explorePath = new List<Node>();
+            Node node;
+            foreach(string path in explore[dropdownFriends.Text])
+            {
+                node = this.graph.getNode(path);
+                explorePath.Add(node);
+            }
+            node = this.graph.getNode(dropdownFriends.Text);
+            explorePath.Add(node);
+
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = this.graph.generateMSAGL(explorePath);
+
+            this.panelGraph.Controls.Clear();
+            this.panelGraph.SuspendLayout();
+            this.panelGraph.Controls.Add(viewer);
+            this.panelGraph.ResumeLayout();
 
             tbDebug.Text = Utilities.formatResult(
                 dropdownAccount.Text,

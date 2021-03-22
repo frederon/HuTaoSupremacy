@@ -64,17 +64,17 @@ namespace HuTaoSupremacy
             }
         }
 
-        public GViewer generateMSAGL()
+        public GViewer generateMSAGL(List<Node> paths = null)
         {
             GViewer viewer = new GViewer();
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
             List<string[]> edges = new List<string[]>();
 
-            foreach(Node n in this.nodes)
+            foreach (Node n in this.nodes)
             {
                 graph.AddNode(n.getName());
-                foreach(string s in n.getNeighbor())
+                foreach (string s in n.getNeighbor())
                 {
                     //edges.FindIndex(e => e[0] == n.getName() && e[1] == s);
                     if (edges.FindIndex(e => e[0] == n.getName() && e[1] == s) < 0)
@@ -90,12 +90,21 @@ namespace HuTaoSupremacy
                 }
             }
 
+            if (paths != null)
+            {
+                foreach (Node node in paths)
+                {
+                    graph.FindNode(node.getName()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
+                }
+            }
+
             viewer.Graph = graph;
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
 
             return viewer;
         }
     }
+
     public class Node
     {
         private string name;
