@@ -206,6 +206,17 @@ namespace HuTaoSupremacy
             
         }
 
+        public static void exploreDFS(Graph G, Node awal, Node tujuan)
+        {
+            Dictionary<string, bool> visited = new Dictionary<string, bool>();
+            G.getNodes().ForEach(n => visited.Add(n.getName(), false));
+
+            Dictionary<string, List<string>> path = new Dictionary<string, List<string>>();
+            G.getNodes().ForEach(n => path.Add(n.getName(), new List<string>()));
+
+
+        }
+
         public static Graph StringToGraph(string text)
         {
             Graph g = new Graph();
