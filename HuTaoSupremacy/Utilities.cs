@@ -59,7 +59,7 @@ namespace HuTaoSupremacy
                     }
                 }
             }
-
+            return result;
            
         }
 
@@ -82,9 +82,6 @@ namespace HuTaoSupremacy
             DFSrekursif(G, N, N, ref visited, ref result); 
             foreach (KeyValuePair<string, List<string>> kvp in result)
             {
-            return result;
-
-            /* foreach(KeyValuePair<string, List<string>> kvp in result) {
                 System.Diagnostics.Debug.WriteLine(kvp.Key + ":");
                 kvp.Value.ForEach(n => System.Diagnostics.Debug.WriteLine("\t" + n));
             }
@@ -117,9 +114,6 @@ namespace HuTaoSupremacy
                     result[N.getName()] = resultList;
                 }
             }
-            } */
-        }
-
             // cari neighbor selanjutnya yang blom dikunjungin
             while (!isAllNeighborVisited(visited, N))
             {
@@ -146,9 +140,9 @@ namespace HuTaoSupremacy
                 DFSrekursif(G, SimpulAwal, G.getNode(nextNeighbor), ref visited, ref result);
             }
             
-        }
+        }       
 
-        private static bool isAllNeighborVisited(Dictionary<string, bool> D, Node N)
+        public static bool isAllNeighborVisited(Dictionary<string, bool> D, Node N)
         {
             bool visited = true;
             List<string> allNeighbor = N.getNeighbor();
@@ -165,7 +159,7 @@ namespace HuTaoSupremacy
             return visited;
         }
 
-        public static List<string> exploreBFS(Graph g, Node s, Node t)
+        // public static List<string> exploreBFS(Graph g, Node s, Node t)
         public static Dictionary<string, List<string>> exploreBFS(Graph g, Node s, Node t)
         {
             Dictionary<string, bool> visited = new Dictionary<string, bool>();
