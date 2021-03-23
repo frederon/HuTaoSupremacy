@@ -73,13 +73,29 @@ namespace HuTaoSupremacy
 
             foreach (Node n in this.nodes)
             {
-                graph.AddNode(n.getName());
+                var node = graph.AddNode(n.getName());
+                if (paths != null && paths.Count > 1 && paths.Contains(n))
+                {
+                    node.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
+                }
+
                 foreach (string s in n.getNeighbor())
                 {
                     //edges.FindIndex(e => e[0] == n.getName() && e[1] == s);
                     if (edges.FindIndex(e => e[0] == n.getName() && e[1] == s) < 0)
                     {
                         var edge = graph.AddEdge(n.getName(), s);
+                        if (
+                            paths != null && paths.Count > 1 &&
+                            paths.Contains(
+                                this.getNode(n.getName())
+                            ) && 
+                            paths.Contains(
+                                this.getNode(s)
+                            ))
+                        {
+                            edge.Attr.LineWidth = 3;
+                        }
                         edge.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
                         edge.Attr.ArrowheadAtSource = Microsoft.Msagl.Drawing.ArrowStyle.None;
                         string[] e1 = { n.getName(), s };
@@ -87,14 +103,6 @@ namespace HuTaoSupremacy
                         edges.Add(e1);
                         edges.Add(e2);
                     }
-                }
-            }
-
-            if (paths != null && paths.Count > 1)
-            {
-                foreach (Node node in paths)
-                {
-                    graph.FindNode(node.getName()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
                 }
             }
 
