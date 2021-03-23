@@ -85,14 +85,15 @@ namespace HuTaoSupremacy
                     if (edges.FindIndex(e => e[0] == n.getName() && e[1] == s) < 0)
                     {
                         var edge = graph.AddEdge(n.getName(), s);
-                        if (
-                            paths != null && paths.Count > 1 &&
-                            paths.Contains(
-                                this.getNode(n.getName())
-                            ) && 
-                            paths.Contains(
-                                this.getNode(s)
-                            ))
+
+                        int indexOfNode1InPaths = -1;
+                        int indexOfNode2InPaths = -1;
+                        if (paths != null && paths.Count > 1)
+                        {
+                            indexOfNode1InPaths = paths.IndexOf(this.getNode(n.getName()));
+                            indexOfNode2InPaths = paths.IndexOf(this.getNode(s));
+                        }
+                        if (indexOfNode1InPaths >= 0 && indexOfNode2InPaths >= 0 && Math.Abs(indexOfNode2InPaths - indexOfNode1InPaths) == 1)
                         {
                             edge.Attr.LineWidth = 3;
                         }
