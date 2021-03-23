@@ -43,8 +43,8 @@ namespace HuTaoSupremacy
             this.bfsAlgorithm = new MaterialSkin.Controls.MaterialRadioButton();
             this.dfsAlgorithm = new MaterialSkin.Controls.MaterialRadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelAlgorithm = new MaterialSkin.Controls.MaterialLabel();
             this.labelSelectFile = new System.Windows.Forms.Label();
+            this.labelAlgorithm = new MaterialSkin.Controls.MaterialLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -253,6 +253,15 @@ namespace HuTaoSupremacy
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             // 
+            // labelSelectFile
+            // 
+            this.labelSelectFile.AutoSize = true;
+            this.labelSelectFile.Location = new System.Drawing.Point(73, 22);
+            this.labelSelectFile.Name = "labelSelectFile";
+            this.labelSelectFile.Size = new System.Drawing.Size(144, 15);
+            this.labelSelectFile.TabIndex = 6;
+            this.labelSelectFile.Text = "Select a file or drop it here";
+            // 
             // labelAlgorithm
             // 
             this.labelAlgorithm.AutoSize = true;
@@ -265,19 +274,12 @@ namespace HuTaoSupremacy
             this.labelAlgorithm.TabIndex = 17;
             this.labelAlgorithm.Text = "Select Algorithm:";
             // 
-            // labelSelectFile
-            // 
-            this.labelSelectFile.AutoSize = true;
-            this.labelSelectFile.Location = new System.Drawing.Point(73, 22);
-            this.labelSelectFile.Name = "labelSelectFile";
-            this.labelSelectFile.Size = new System.Drawing.Size(144, 15);
-            this.labelSelectFile.TabIndex = 6;
-            this.labelSelectFile.Text = "Select a file or drop it here";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(712, 561);
             this.Controls.Add(this.labelAlgorithm);
             this.Controls.Add(this.groupBox1);

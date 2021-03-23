@@ -22,11 +22,10 @@ namespace HuTaoSupremacy
         public MainWindow()
         {
             InitializeComponent();
-
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            
+
 
             this.AllowDrop = true;
             this.DragEnter += new DragEventHandler(MainWindow_DragEnter);
@@ -106,12 +105,12 @@ namespace HuTaoSupremacy
             if (openFileDialog.ShowDialog() != DialogResult.Cancel)
             {
                 this.selectedFilePath = openFileDialog.FileName;
+                labelFilename.Text = openFileDialog.FileName.Split('\\').Last();
+                generateGraph();
             } else
             {
                 this.selectedFilePath = "";
             }
-            labelFilename.Text = openFileDialog.FileName.Split('\\').Last();
-            generateGraph();
         }
 
         private void buttonResult_Click(object sender, EventArgs e)
