@@ -220,7 +220,9 @@ namespace HuTaoSupremacy
             Dictionary<string, List<string>> path = new Dictionary<string, List<string>>();
             G.getNodes().ForEach(n => path.Add(n.getName(), new List<string>()));
 
-            exploreDFSsolver(G, awal, awal, tujuan, ref visited, ref path);
+            visited[awal.getName()] = true;
+
+            exploreDFSsolver(G, awal, G.getNode(awal.getNeighbor()[0]), tujuan, ref visited, ref path);
             return path;
         }
 
@@ -233,6 +235,7 @@ namespace HuTaoSupremacy
                 {
                     path[currNode.getName()].Add(str);
                 }
+                path[currNode.getName()].Add(lastNode.getName());
                 return;
             }
 
@@ -243,11 +246,14 @@ namespace HuTaoSupremacy
                 {
                     path[currNode.getName()].Add(str);
                 }
+                path[currNode.getName()].Add(lastNode.getName());
                 for (int i = 0; i < currNode.getNeighbor().Count(); i++)
                 {
-                    exploreDFSsolver(G, currNode, G.getNode(currNode.getNeighbor()[i]), targetNode, ref visited, ref path);
+                    if (!visited[currNode.getNeighbor()[i]])
+                    {
+                        exploreDFSsolver(G, currNode, G.getNode(currNode.getNeighbor()[i]), targetNode, ref visited, ref path);
+                    }
                 }
-
             }
         }
 
