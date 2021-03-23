@@ -79,7 +79,7 @@ namespace HuTaoSupremacy
                 }
             );
 
-            DFSrekursif(G, N, N, ref visited, ref result);
+            recommendationDFSsolver(G, N, N, ref visited, ref result);
             return result;
             /* foreach (KeyValuePair<string, List<string>> kvp in result)
             {
@@ -89,7 +89,7 @@ namespace HuTaoSupremacy
             */
         }
 
-        private static void DFSrekursif(Graph G, Node SimpulAwal, Node N, ref Dictionary<string, bool> visited, ref Dictionary<string, List<string>> result)
+        private static void recommendationDFSsolver(Graph G, Node SimpulAwal, Node N, ref Dictionary<string, bool> visited, ref Dictionary<string, List<string>> result)
         {
             if (!visited[SimpulAwal.getName()])
             {
@@ -139,7 +139,7 @@ namespace HuTaoSupremacy
                 {
                     return;
                 }
-                DFSrekursif(G, SimpulAwal, G.getNode(nextNeighbor), ref visited, ref result);
+                recommendationDFSsolver(G, SimpulAwal, G.getNode(nextNeighbor), ref visited, ref result);
             }
             
         }       
@@ -218,60 +218,39 @@ namespace HuTaoSupremacy
             G.getNodes().ForEach(n => visited.Add(n.getName(), false));
 
             Dictionary<string, List<string>> path = new Dictionary<string, List<string>>();
-            path.Add(awal.getName(), new List<string>());
+            G.getNodes().ForEach(n => path.Add(n.getName(), new List<string>()));
 
-            RekursifDFS(G, awal, awal, tujuan, ref visited, ref path);
+            exploreDFSsolver(G, awal, awal, tujuan, ref visited, ref path);
             return path;
         }
 
-        private static void RekursifDFS(Graph G, Node awal, Node sekarang, Node tujuan, ref Dictionary<string, bool> visited, ref Dictionary<string, List<string>> path)
+        private static void exploreDFSsolver(Graph G, Node lastNode, Node currNode, Node targetNode, ref Dictionary<string, bool> visited, ref Dictionary<string, List<string>> path)
         {
-            if (!visited[awal.getName()])
+            if (currNode.getName() == targetNode.getName())
             {
-                visited[awal.getName()] = true;
-                path[awal.getName()].Add(awal.getName());
-            }
-            if (sekarang == tujuan)
-            {
-                path[awal.getName()].Add(sekarang.getName());
-            }
-            else
-            {
-                if (isAllNeighborVisited(visited, sekarang))
+                visited[currNode.getName()] = true;
+                foreach (string str in path[lastNode.getName()])
                 {
-                    path[awal.getName()].Remove(sekarang.getName());
-                    return;
+                    path[currNode.getName()].Add(str);
                 }
-                else
+                return;
+            }
+
+            else if (!visited[currNode.getName()])
+            {
+                visited[currNode.getName()] = true;
+                foreach (string str in path[lastNode.getName()])
                 {
-                    while (!isAllNeighborVisited(visited, sekarang))
-                    {
-                        int i = 0;
-                        bool OutOfBounds = false;
-                        string nextNeighbor = sekarang.getNeighbor()[i];
-                        i++;
-                        while (visited[nextNeighbor] && !OutOfBounds)
-                        {
-                            if (i == sekarang.getNeighbor().Count)
-                            {
-                                OutOfBounds = true;
-                            }
-                            else
-                            {
-                                nextNeighbor = sekarang.getNeighbor()[i];
-                                i++;
-                            }
-                        }
-                        if (!OutOfBounds)
-                        {
-                            path[awal.getName()].Add(G.getNode(nextNeighbor).getName());
-                            RekursifDFS(G, awal, G.getNode(nextNeighbor), tujuan, ref visited, ref path);
-                        }
-                    }
+                    path[currNode.getName()].Add(str);
                 }
-                
+                for (int i = 0; i < currNode.getNeighbor().Count(); i++)
+                {
+                    exploreDFSsolver(G, currNode, G.getNode(currNode.getNeighbor()[i]), targetNode, ref visited, ref path);
+                }
+
             }
         }
+
         public static Graph StringToGraph(string text)
         {
             Graph g = new Graph();
@@ -313,6 +292,31 @@ namespace HuTaoSupremacy
             return g;
         }
 
+        public static string AddOrdinal(int num)
+        {
+            if (num <= 0) return num.ToString();
+
+            switch (num % 100)
+            {
+                case 11:
+                case 12:
+                case 13:
+                    return num + "th";
+            }
+
+            switch (num % 10)
+            {
+                case 1:
+                    return num + "st";
+                case 2:
+                    return num + "nd";
+                case 3:
+                    return num + "rd";
+                default:
+                    return num + "th";
+            }
+        }
+
         public static string formatResult(
             string account,
             string exploreFriend,
@@ -343,7 +347,7 @@ namespace HuTaoSupremacy
             result += "Nama akun: " + account + " dan " + exploreFriend + "\n";
             if (explore[exploreFriend].Count > 0)
             {
-                result += explore[exploreFriend].Count - 1 + " degree connection\n";
+                result += AddOrdinal(explore[exploreFriend].Count - 1) + " degree connection\n";
                 foreach (string str in explore[exploreFriend])
                 {
                     result += str + " -> ";

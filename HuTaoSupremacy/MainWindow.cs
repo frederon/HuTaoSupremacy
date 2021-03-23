@@ -114,12 +114,6 @@ namespace HuTaoSupremacy
             generateGraph();
         }
 
-        private void buttonSubmit_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-
         private void buttonResult_Click(object sender, EventArgs e)
         {
             if (dropdownAccount.Text == "" || dropdownFriends.Text == "")
@@ -153,8 +147,11 @@ namespace HuTaoSupremacy
                     this.graph,
                     this.graph.getNode(dropdownAccount.Text)
                 );
-                MessageBox.Show("Not yet implemented!", "Error");
-                return;
+                explore = Utilities.exploreDFS(
+                    this.graph,
+                    this.graph.getNode(dropdownAccount.Text),
+                    this.graph.getNode(dropdownFriends.Text)
+                );
             } else
             {
                 MessageBox.Show("Please select an algorithm", "Error");
